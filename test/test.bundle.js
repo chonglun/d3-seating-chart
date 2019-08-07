@@ -120,17 +120,17 @@ class D3SeatingChart {
             currentTransform = 'translate(0, 0)scale(1)';
         }
         if (this.config.showBehavior !== showBehavior_enum_1.ShowBehavior.All) {
-            let hideList = this.getHideList(selection);
-            let showList = this.getShowList(selection);
-            hideList
-                .style('opacity', 1)
-                .transition()
-                .duration(animate ? 300 : 0)
-                .style('opacity', 0);
-            showList.transition()
-                .style('opacity', 0)
-                .duration(animate ? 300 : 0)
-                .style('opacity', 1);
+            // let hideList = this.getHideList(selection);
+            // let showList = this.getShowList(selection);
+            // hideList
+            //     .style('opacity', 1)
+            //     .transition()
+            //     .duration(animate ? 300 : 0)
+            //     .style('opacity', 0);
+            // showList.transition()
+            //     .style('opacity', 0)
+            //     .duration(animate ? 300 : 0)
+            //     .style('opacity', 1);
         }
         boardSelection.transition()
             .duration(animate ? 300 : 0)
@@ -450,6 +450,11 @@ exports.D3SeatingChart = D3SeatingChart;
 Object.defineProperty(exports, "__esModule", { value: true });
 const D3SeatingChart_1 = __webpack_require__(0);
 const showBehavior_enum_1 = __webpack_require__(2);
+if (document.getElementById('x')){
+
+}else{
+    ShowSVG(1200,700);
+}
 let d3sc = D3SeatingChart_1.D3SeatingChart.attach(document.getElementById('x'), {
     showBehavior: showBehavior_enum_1.ShowBehavior.AllDecendants,
     allowManualSelection: true
@@ -470,41 +475,73 @@ d3sc.registerSelectionChangeListener((e) => {
     console.log(e);
     console.log('select evt should run everytime');
 });
-document.getElementById('goToBoard').onclick = function () {
-    d3sc.goToBoard();
-};
-document.getElementById('refresh').onclick = function () {
-    d3sc.refresh();
-};
-document.getElementById('goBack').onclick = function () {
-    if (d3sc.canGoBack()) {
-        d3sc.goBack();
-    }
-    else {
-        console.log('you cant go back');
-    }
-};
-document.getElementById('lock').onclick = function () {
-    d3sc.lock('[seat="5"]');
-};
-document.getElementById('unlock').onclick = function () {
-    d3sc.unlock('[seat="5"]');
-};
-document.getElementById('select').onclick = function () {
-    d3sc.select('[seat="5"]');
-};
-document.getElementById('deselect').onclick = function () {
-    d3sc.deselect('[seat="5"]');
-};
-document.getElementById('reserve').onclick = function () {
-    d3sc.lock('[seat="5"]', 'reserved');
-};
-document.getElementById('unreserve').onclick = function () {
-    d3sc.unlock('[seat="5"]');
-};
-document.getElementById('closest1').onclick = function () {
-    d3sc.select(d3sc.getClosestSeats('left', 3, false));
-};
+if (document.getElementById('x')){
+    document.getElementById('x').ondblclick = function () {
+        if (d3sc.canGoBack()) {
+            d3sc.goBack();
+        }
+        else {
+            console.log('you cant go back');
+        }
+    };
+}
+if (document.getElementById('goToBoard')){
+    document.getElementById('goToBoard').onclick = function () {
+        d3sc.goToBoard();
+    };
+}
+if (document.getElementById('refresh')){
+    document.getElementById('refresh').onclick = function () {
+        d3sc.refresh();
+    };
+}
+
+if (document.getElementById('refresh')){
+    document.getElementById('goBack').onclick = function () {
+        if (d3sc.canGoBack()) {
+            d3sc.goBack();
+        }
+        else {
+            console.log('you cant go back');
+        }
+    };
+}
+
+if (document.getElementById('lock')){
+    document.getElementById('lock').onclick = function () {
+        d3sc.lock('[seat="5"]');
+    };
+}
+if (document.getElementById('unlock')){
+    document.getElementById('unlock').onclick = function () {
+        d3sc.unlock('[seat="5"]');
+    };
+}
+if (document.getElementById('select')){ 
+    document.getElementById('select').onclick = function () {
+        d3sc.select('[seat="5"]');
+    };
+}
+if (document.getElementById('deselect')){ 
+    document.getElementById('deselect').onclick = function () {
+        d3sc.deselect('[seat="5"]');
+    };
+}
+if (document.getElementById('reserve')){  
+    document.getElementById('reserve').onclick = function () {
+        d3sc.lock('[seat="5"]', 'reserved');
+    };
+}
+if (document.getElementById('unreserve')){   
+    document.getElementById('unreserve').onclick = function () {
+        d3sc.unlock('[seat="5"]');
+    };
+}
+if (document.getElementById('closest1')){       
+    document.getElementById('closest1').onclick = function () {
+        d3sc.select(d3sc.getClosestSeats('left', 3, false));
+    };
+}
 
 
 /***/ }),
